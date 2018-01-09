@@ -10,8 +10,12 @@ public:
 	Vector(int); //zero vector
 	Vector(int, double*, bool); //full definition
 	Vector operator +(Vector);
+	Vector operator -(Vector);
 	double operator *(Vector);
 	Vector operator /(Vector);
+	Vector operator <<(Vector);
+	Vector operator >>(Vector);
+	double modulus();
 	void operator =(Vector);
 	void operator /=(Vector);
 	void destroy(); //deallocates memory

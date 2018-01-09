@@ -27,6 +27,12 @@ Vector Vector::operator +(Vector v)
 	for(int i = 0; i < n; i++) w.a[i] = a[i] + v.a[i];
 	return w;
 }
+Vector Vector::operator -(Vector v)
+{
+	Vector w = Vector(n);
+	for(int i = 0; i < n; i++) w.a[i] = a[i] - v.a[i];
+	return w;
+}
 void Vector::operator =(Vector v)
 {
 	destroy();
@@ -50,6 +56,22 @@ double Vector::operator *(Vector v)
 	for(int i = 0; i < n; i++) y += a[i]*v.a[i];
 	return y;
 }
+Vector Vector::operator <<(Vector v)
+{
+	Vector w = Vector(n);
+	for(int i = 0; i < n; i++) w.a[i] = a[i] + v.a[i];
+	v.destroy();
+	destroy();
+	return w;
+}
+Vector Vector::operator >>(Vector v)
+{
+	Vector w = Vector(n);
+	for(int i = 0; i < n; i++) w.a[i] = a[i] - v.a[i];
+	v.destroy();
+	destroy();
+	return w;
+}
 Vector Vector::operator /(Vector v)
 {
 	Vector w = Vector(3);
@@ -57,6 +79,13 @@ Vector Vector::operator /(Vector v)
 	w.a[1] = a[2]*v.a[0] - a[0]*v.a[2];
 	w.a[2] = a[0]*v.a[1] - a[1]*v.a[0];
 	return v;
+}
+double Vector::modulus()
+{
+	double y = 0;
+	for(int i = 0; i < n; i++) y += a[i]*a[i];
+	y = sqrt(y);
+	return y;
 }
 void Vector::destroy()
 {
